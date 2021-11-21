@@ -51,17 +51,12 @@ void getData(ifstream &infile, vector<SchoolInfo> &vect);
 
 void print(ofstream &outfile, vector<SchoolInfo> &vect);
 
+ull_int factorial(int n);
 int main()
 {
-    vector<SchoolInfo> pct; // participants
-    ifstream infile;
-    ofstream outfile;
-
-    openFiles(infile, outfile);
-
-    getData(infile, pct);
-
-    print(outfile, pct);
+    int x = 4;
+    ull_int product = factorial(20);
+    cout << product<< '\n';
 }
 
 /**
@@ -100,6 +95,20 @@ void getData(ifstream &infile, vector<SchoolInfo> &vect)
         infile >> temp.n >> temp.a >> temp.b >> temp.d;
         vect.push_back(temp);
     }
+}
+
+// works up to 20
+ull_int factorial(int n)
+{
+    ull_int product = 1; // 0! is 1, so we start here
+
+    // If n > 0, calculate factorial
+    for(int i = 1; i <= n; i++)
+    {
+        product *= i;
+    }
+
+    return product;
 }
 
 void print(ofstream &outfile, vector<SchoolInfo> &vect)

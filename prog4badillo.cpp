@@ -55,8 +55,8 @@ ull_int factorial(int n);
 int main()
 {
     int x = 4;
-    ull_int product = factorial(20);
-    cout << product<< '\n';
+    ull_int product = factorial(21);
+    cout << product << '\n';
 }
 
 /**
@@ -103,7 +103,7 @@ ull_int factorial(int n)
     ull_int product = 1; // 0! is 1, so we start here
 
     // If n > 0, calculate factorial
-    for(int i = 1; i <= n; i++)
+    for (int i = 1; i <= n; i++)
     {
         product *= i;
     }

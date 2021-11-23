@@ -1,0 +1,2 @@
+language = "bash"
+run = "clang++ prog4badillo.cpp -o main && ./main && rm main"

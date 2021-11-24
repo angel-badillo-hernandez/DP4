@@ -126,7 +126,7 @@ void print(ofstream &outfile, vector<SchoolInfo> &vect)
     }
 }
 
-ull_int combo(int n, int r)
+ull_int C(int n, int r)
 {
   return factorial(n) / ((factorial(r)*factorial(n-r)));
 }

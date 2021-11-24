@@ -24,7 +24,7 @@ int main()
 
     ull_int val;
 
-    val = combo(6,2);
-    cout << val;
+    val = C(20,2);
+    cout << val << '\n';
 }
 

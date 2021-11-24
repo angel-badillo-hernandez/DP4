@@ -125,3 +125,8 @@ void print(ofstream &outfile, vector<SchoolInfo> &vect)
         outfile << vect[i].n << ' ' << vect[i].a << ' ' << vect[i].b << ' ' << vect[i].d << '\n';
     }
 }
+
+ull_int combo(int n, int r)
+{
+  return factorial(n) / ((factorial(r)*factorial(n-r)));
+}

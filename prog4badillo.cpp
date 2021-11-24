@@ -11,6 +11,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include "combo.hpp"
 #include <cstdint>
 using namespace std;
 
@@ -18,7 +19,12 @@ using namespace std;
 int main()
 {
     int x = 4;
-    ull_int product = factorial(21);
+    ull_int product = factorial(20);
     cout << product << '\n';
+
+    ull_int val;
+
+    val = combo(6,2);
+    cout << val;
 }
 

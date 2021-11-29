@@ -26,5 +26,10 @@ int main()
 
     val = C(20,2);
     cout << val << '\n';
+
+    ull_int y;
+
+    y = exponential(2,-1);
+    cout << y << '\n';
 }
 

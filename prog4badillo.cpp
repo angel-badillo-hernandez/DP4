@@ -24,10 +24,13 @@ int main()
     vector<SchoolInfo> info;
     getData(infile, info);
 
-    for (int i = 0; i < info.size(); i++)
+    for (int i = 0; i < info.size()-2; i++)
     {
         cout << calcCombo(info[i]) << '\n';
     }
+
+    cout << calcCombo(info[5])% (exponential(10,9)+7) << '\n';
+    cout << calcCombo(info[6])% (exponential(10,9)+7) << '\n';
 }
 
 ull_int calcCombo(SchoolInfo t)

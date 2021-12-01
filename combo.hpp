@@ -6,6 +6,8 @@ using namespace std;
 
 #define INTMAX 2147483647
 
+// (A * B)modC = (AmodC * BmodC)modC
+#define MAXVALUE 1000000007
 // Short-hand for unsigned long long int
 typedef unsigned long long int ull_int;
 
@@ -68,6 +70,8 @@ void print(ofstream &outfile, vector<SchoolInfo> &vect);
  */
 ull_int factorial(int n);
 
+
+ull_int exp(ull_int a, int n);
 /**
  * @brief Prompts the user for i/o file names. Opens the i/o files and
  *        "returns" them via the arguments passed by reference.
@@ -114,27 +118,27 @@ ull_int factorial(int n)
     // If n > 0, calculate factorial
     for (int i = 1; i <= n; i++)
     {
-        product *= i;
+        product *= i % MAXVALUE;
     }
 
-    return product;
+    return product % MAXVALUE;
 }
 
 ull_int C(int n, int r)
 {
-    return factorial(n) / ((factorial(r) * factorial(n - r)));
+    return (factorial(n) / ((factorial(r) * factorial(n - r)))) % MAXVALUE;
 }
 
 // For our purposes, this will work, no error checking necessary.
 // C(0,0) and 0! are 1, and we are working with positive integers.
-ull_int exponential(ull_int a, int n)
+ull_int exp(ull_int a, int n)
 {
     ull_int product = 1;
 
     for (int i = 0; i < n; i++)
-        product *= a;
+        product *= a % MAXVALUE;
 
-    return product;
+    return product % MAXVALUE;
 }
 
 void print(ofstream &outfile, vector<SchoolInfo> &vect)

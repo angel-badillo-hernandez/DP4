@@ -29,11 +29,11 @@ int main()
         cout << calcCombo(info[i]) << '\n';
     }
 
-    cout << calcCombo(info[5])% (exponential(10,9)+7) << '\n';
-    cout << calcCombo(info[6])% (exponential(10,9)+7) << '\n';
+    cout << calcCombo(info[5]) << '\n';
+    cout << calcCombo(info[6]) << '\n';
 }
 
 ull_int calcCombo(SchoolInfo t)
 {
-    return C(t.n, t.a) * exponential(C(t.b, t.d), t.a);
+    return C(t.n, t.a) * exp(C(t.b, t.d), t.a) % MAXVALUE;
 }

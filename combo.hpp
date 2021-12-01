@@ -4,9 +4,11 @@
 #include <vector>
 using namespace std;
 
+#define INTMAX 2147483647
+
 // Short-hand for unsigned long long int
 typedef unsigned long long int ull_int;
-const int INT_MAX = 2147483647; 
+
 struct SchoolInfo
 {
 public:
@@ -120,21 +122,19 @@ ull_int factorial(int n)
 
 ull_int C(int n, int r)
 {
-  return factorial(n) / ((factorial(r)*factorial(n-r)));
+    return factorial(n) / ((factorial(r) * factorial(n - r)));
 }
 
-// When n > 0, since negative exponents are not whole numbers, and when a = 0, negative exponents result in undefined result.
+// For our purposes, this will work, no error checking necessary.
+// C(0,0) and 0! are 1, and we are working with positive integers.
 ull_int exponential(ull_int a, int n)
 {
-  if(n < 0)
-  return INT_MAX;
-  
-  ull_int product = 1;
-  for(int i = 1; i <= n; i++)
-  {
-    product *= a;
-  }
-  return product;
+    ull_int product = 1;
+
+    for (int i = 0; i < n; i++)
+        product *= a;
+
+    return product;
 }
 
 void print(ofstream &outfile, vector<SchoolInfo> &vect)
@@ -144,4 +144,3 @@ void print(ofstream &outfile, vector<SchoolInfo> &vect)
         outfile << vect[i].n << ' ' << vect[i].a << ' ' << vect[i].b << ' ' << vect[i].d << '\n';
     }
 }
-

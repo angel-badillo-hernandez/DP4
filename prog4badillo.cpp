@@ -15,21 +15,22 @@
 #include <cstdint>
 using namespace std;
 
+ull_int calcCombo(SchoolInfo t);
 
 int main()
 {
-    int x = 4;
-    ull_int product = factorial(20);
-    cout << product << '\n';
+    ifstream infile;
+    infile.open("prog4.txt");
+    vector<SchoolInfo> info;
+    getData(infile, info);
 
-    ull_int val;
-
-    val = C(20,2);
-    cout << val << '\n';
-
-    ull_int y;
-
-    y = exponential(2,-1);
-    cout << y << '\n';
+    for (int i = 0; i < info.size(); i++)
+    {
+        cout << calcCombo(info[i]) << '\n';
+    }
 }
 
+ull_int calcCombo(SchoolInfo t)
+{
+    return C(t.n, t.a) * exponential(C(t.b, t.d), t.a);
+}

@@ -3,7 +3,11 @@
  *
  * Course: CMPS-2433-101, Fall 2021, Springfellow
  *
- * Purpose:
+ * Purpose: This program will read 4 integers from an input file.
+ *          N, number of school from which A will participate.
+ *          B, students per school where D students participate.
+ *          After reading the input, the program will print the computation
+ *          for each combination to the output file.
  *
  ****************************************************************************/
 
@@ -14,8 +18,8 @@
 #include <cstdint>
 using namespace std;
 
-#define MAXVALUE 1000000007
-typedef unsigned long long int ull;
+#define MAXVALUE 1000000007     // Used for printing large output with %
+typedef unsigned long long ull; // 
 
 
 /**
@@ -30,49 +34,74 @@ typedef unsigned long long int ull;
 void openFiles(ifstream &infile, ofstream &outfile);
 
 /**
- * @brief Reads data from input file to vector.
- *
- * @param infile   input file stream by reference.
- * @param compInfo compInfo object by value.
- *
- * @return Nothing.
+ * @brief Read data from input file to variables.
+ * 
+ * @param infile ifstream object by reference.
+ * @param n      ull by reference.
+ * @param a      ull by reference.
+ * @param b      ull by reference.
+ * @param d      ull by reference.
  */
 void getData(ifstream &infile, ull &n, ull &a, ull &b, ull &d);
 
 /**
- * @brief Prints
- *
- * @param outfile  output file stream by reference.
- * @param compInfo compInfo object by value.
- *
- * @return Nothing.
+ * @brief Prints computation of combination to output file.
+ * 
+ * @param outfile ofstream by reference.
+ * @param n      ull by reference.
+ * @param a      ull by reference.
+ * @param b      ull by reference.
+ * @param d      ull by reference.
  */
 void print(ofstream &outfile, ull n, ull a, ull b, ull d);
 
-unsigned long long int exp(unsigned long long int a, int n);
+/**
+ * @brief Exponentiates an ull, a, to a power n, an integer.
+ * 
+ * @param a ull by value.
+ * @param n int by value.
+ * @return  ull, the result.
+ */
+ull exp(ull a, int n);
 
 /**
- * @brief Calculates factorial
+ * @brief Calculates factorial of n!
  *
- * @param n An integer.
+ * @param n int by value.
  *
- * @return unsigned long long int
+ * @return ull, the result.
  */
-unsigned long long int factorial(int n);
+ull factorial(int n);
 
-unsigned long long int C(int n, int r);
+/**
+ * @brief Calculates a combination of C(n,r)
+ * 
+ * @param n ull by value.
+ * @param r ull by value.
+ * @return  ull, the result. 
+ */
+ull C(int n, int r);
 
-unsigned long long int calcCombo(ull n, ull a, ull b, ull d);
+/**
+ * @brief Calculates the combination of N items
+ *        where exactly are picked. And for every
+ *        N item there are B items. And D out of B items
+ *        picked.
+ * 
+ * @param n  ull by reference.
+ * @param a  ull by reference.
+ * @param b  ull by reference.
+ * @param d  ull by reference.
+ * @return   ull, the result. 
+ */
+ull calcCombo(ull n, ull a, ull b, ull d);
 
 int main()
 {
     ifstream infile;
     ofstream outfile;
 
-    unsigned long long int n{0};
-    unsigned long long int a{0};
-    unsigned long long int b{0};
-    unsigned long long int d{0};
+    ull n{0}, a{0}, b{0}, d{0};
     
     openFiles(infile, outfile);
 
@@ -116,9 +145,9 @@ void getData(ifstream &infile, ull &n, ull &a, ull &b, ull &d)
 }
 
 // works up to 20
-unsigned long long int factorial(int n)
+ull factorial(int n)
 {
-    unsigned long long int product = 1; // 0! is 1, so we start here
+    ull product = 1; // 0! is 1, so we start here
 
     // If n > 0, calculate factorial
     for (int i = 1; i <= n; i++)
@@ -129,16 +158,16 @@ unsigned long long int factorial(int n)
     return product % MAXVALUE;
 }
 
-unsigned long long int C(int n, int r)
+ull C(int n, int r)
 {
     return (factorial(n) / ((factorial(r) * factorial(n - r)))) % MAXVALUE;
 }
 
 // For our purposes, this will work, no error checking necessary.
 // C(0,0) and 0! are 1, and we are working with positive integers.
-unsigned long long int exp(unsigned long long int a, int n)
+ull exp(ull a, int n)
 {
-    unsigned long long int product = 1;
+    ull product = 1;
 
     for (int i = 0; i < n; i++)
         product *= a % MAXVALUE;
@@ -146,7 +175,7 @@ unsigned long long int exp(unsigned long long int a, int n)
     return product % MAXVALUE;
 }
 
-unsigned long long int calcCombo(ull n, ull a, ull b, ull d)
+ull calcCombo(ull n, ull a, ull b, ull d)
 {
     return C(n, a) * exp(C(b, d), a) % MAXVALUE;
 }

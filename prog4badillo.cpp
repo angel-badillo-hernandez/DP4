@@ -19,7 +19,7 @@
 using namespace std;
 
 #define MAXVALUE 1000000007     // Used for printing large output with %
-typedef unsigned long long ull; // 
+typedef unsigned long long ull; // Used for quickly typing and reducing length of code
 
 
 /**
@@ -28,8 +28,6 @@ typedef unsigned long long ull; //
  *
  * @param infile  input file stream by reference.
  * @param outfile output file stream by reference.
- *
- * @return Nothing.
  */
 void openFiles(ifstream &infile, ofstream &outfile);
 
@@ -103,10 +101,13 @@ int main()
 
     ull n{0}, a{0}, b{0}, d{0};
     
+    // Prompts user for i/o files
     openFiles(infile, outfile);
 
+    // Priming outfile for loop
     infile >> n >> a >> b >> d;
 
+    // Calculates combo for each set of ints in the file
     while(!infile.eof())
     {
         outfile << (C(n, a) * exp(C(b, d), a) % MAXVALUE) << '\n';
@@ -121,8 +122,6 @@ int main()
  *
  * @param infile  input file stream by reference.
  * @param outfile output file stream by reference.
- *
- * @return Nothing.
  */
 void openFiles(ifstream &infile, ofstream &outfile)
 {
@@ -139,12 +138,27 @@ void openFiles(ifstream &infile, ofstream &outfile)
     outfile.open(outFileName); // Open output file
 }
 
+/**
+ * @brief Read data from input file to variables.
+ * 
+ * @param infile ifstream object by reference.
+ * @param n      ull by reference.
+ * @param a      ull by reference.
+ * @param b      ull by reference.
+ * @param d      ull by reference.
+ */
 void getData(ifstream &infile, ull &n, ull &a, ull &b, ull &d)
 {
     infile >> n >> a >> b >> d;
 }
 
-// works up to 20
+/**
+ * @brief Calculates factorial of n!
+ *
+ * @param n int by value.
+ *
+ * @return ull, the result.
+ */
 ull factorial(int n)
 {
     ull product = 1; // 0! is 1, so we start here
@@ -158,13 +172,25 @@ ull factorial(int n)
     return product % MAXVALUE;
 }
 
+/**
+ * @brief Calculates a combination of C(n,r)
+ * 
+ * @param n ull by value.
+ * @param r ull by value.
+ * @return  ull, the result. 
+ */
 ull C(int n, int r)
 {
     return (factorial(n) / ((factorial(r) * factorial(n - r)))) % MAXVALUE;
 }
 
-// For our purposes, this will work, no error checking necessary.
-// C(0,0) and 0! are 1, and we are working with positive integers.
+/**
+ * @brief Exponentiates an ull, a, to a power n, an integer.
+ * 
+ * @param a ull by value.
+ * @param n int by value.
+ * @return  ull, the result.
+ */
 ull exp(ull a, int n)
 {
     ull product = 1;
@@ -175,6 +201,18 @@ ull exp(ull a, int n)
     return product % MAXVALUE;
 }
 
+/**
+ * @brief Calculates the combination of N items
+ *        where exactly are picked. And for every
+ *        N item there are B items. And D out of B items
+ *        picked.
+ * 
+ * @param n  ull by reference.
+ * @param a  ull by reference.
+ * @param b  ull by reference.
+ * @param d  ull by reference.
+ * @return   ull, the result. 
+ */
 ull calcCombo(ull n, ull a, ull b, ull d)
 {
     return C(n, a) * exp(C(b, d), a) % MAXVALUE;
